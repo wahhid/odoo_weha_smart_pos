@@ -9,6 +9,10 @@ AVAILABLE_STATES  = [
 class SmartPosSession(models.Model):
     _name = 'smart.pos.session'
 
+    def trans_close(self):
+        pass 
+
+    
     name = fields.Char('Name', size=100)
     session_date = fields.Date('Session Date', default=date.today())
     date_open = fields.Datetime('Open Date Time', default=datetime.now())
