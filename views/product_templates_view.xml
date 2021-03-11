@@ -3,7 +3,7 @@
     <data>
             
         <menuitem id="weha_product_template_menu" name="Product" parent="weha_smart_pos_master_menu"
-            action="product_template_action_all" sequence="1"/>
+            action="product.product_template_action_all" sequence="1"/>
 
     </data>
 </odoo>
