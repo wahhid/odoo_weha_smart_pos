@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="pos_screen">
+        <nav class="navbar navbar-light bg-light justify-content-between">
+            <a class="navbar-brand">Smart POS</a>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="text-center">Maintenance Website</h1>
+                </div>
+            </div>
+        </div>
+    </template>
+</odoo>
