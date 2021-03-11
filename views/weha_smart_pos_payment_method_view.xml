@@ -20,7 +20,7 @@
         <!-- Form view for Voucher Stage -->
         <record id="view_weha_smart_pos_payment_method_form" model="ir.ui.view">
             <field name="name">view.weha.smart.pos.payment.method.form</field>
-            <field name="model">smart.pos.paymetn.method</field>
+            <field name="model">smart.pos.payment.method</field>
             <field name="type">form</field>
             <field name="mode">primary</field>
             <field name="priority" eval="16" />
