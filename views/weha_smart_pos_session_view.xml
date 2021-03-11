@@ -17,7 +17,7 @@
                     <field name="smart_pos_config_id"/>
                     <field name="date_open"/>
                     <field name="date_close"/>
-                    <field name="operator_id"/>
+                    <field name="cashier_id"/>
                     <field name="state"/>
                 </tree>
             </field>
@@ -48,7 +48,7 @@
                         <group>
                             <group string="General Information">
                                 <field name="smart_pos_config_id"/>
-                                <field name="operator_id"/>
+                                <field name="cashier_id"/>
                             </group>
                             <group string="Time Information">
                                 <field name="session_date"/>
