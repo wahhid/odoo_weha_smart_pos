@@ -1,1 +1,10 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_weha_smart_pos_order_user,weha.smart.pos.order.user,model_smart_pos_order,group_smart_pos_user,1,1,1,0
+access_weha_smart_pos_order_line_user,weha.smart.pos.order.line.user,model_smart_pos_order_line,group_smart_pos_user,1,1,1,0
+access_weha_smart_pos_order_payment_user,weha.smart.pos.order.payment.user,model_smart_pos_order_payment,group_smart_pos_user,1,1,1,0
+
+access_weha_smart_pos_config_user,weha.smart.pos.config.user,model_smart_pos_config,group_smart_pos_user,1,1,1,0
+
+access_weha_smart_pos_payment_method_user,weha.smart.pos.payment.method.user,model_smart_pos_payment_method,group_smart_pos_user,1,1,1,0
+

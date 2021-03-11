@@ -12,6 +12,8 @@
     'data': [
         'data/weha_smart_pos_data.xml',
         'security/weha_smart_pos_security.xml',
+        'views/weha_smart_pos_menu.xml',
+        'views/weha_smart_pos_config_view.xml',
         'views/weha_smart_pos_templates.xml'
     ],
     'application': True,

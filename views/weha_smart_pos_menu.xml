@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- Menus -->
+        <menuitem id="weha_smart_pos_mgmt_main_menu" 
+                name="Smart POS" 
+                sequence="16"
+                web_icon="point_of_sale,static/description/icon.png" 
+                groups="group_smart_pos_user"/>
+        
+        <menuitem id="weha_smart_pos_master_menu" 
+                name="Master"
+                parent="weha_smart_pos_mgmt_main_menu" 
+                sequence="1"
+                groups="group_smart_pos_user"/>
+
+        <menuitem id="weha_smart_pos_transaction_menu" 
+                name="Transaction"
+                parent="weha_smart_mgmt_main_menu" 
+                sequence="2"
+                groups="group_smart_pos_user"/>
+    </data>
+</odoo>
