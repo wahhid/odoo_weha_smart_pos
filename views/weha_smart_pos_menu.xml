@@ -16,7 +16,7 @@
 
         <menuitem id="weha_smart_pos_transaction_menu" 
                 name="Transaction"
-                parent="weha_smart_mgmt_main_menu" 
+                parent="weha_smart_pos_mgmt_main_menu" 
                 sequence="2"
                 groups="group_weha_smart_pos_user"/>
 
