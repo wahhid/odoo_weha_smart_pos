@@ -15,6 +15,7 @@
         'security/ir.model.access.csv',
         'views/weha_smart_pos_menu.xml',
         'views/product_templates_view.xml',
+        'views/res_partner_view.xml',
         'views/weha_smart_pos_config_view.xml',
         'views/weha_smart_pos_templates.xml'
     ],
