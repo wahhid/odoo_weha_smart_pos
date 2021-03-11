@@ -8,12 +8,13 @@
     'category': 'Point of sale',
     'author': 'WEHA',
     'website': 'https://www.weha-id.com',
-    'depends': ['base'],
+    'depends': ['base', 'product'],
     'data': [
         'data/weha_smart_pos_data.xml',
         'security/weha_smart_pos_security.xml',
         'security/ir.model.access.csv',
         'views/weha_smart_pos_menu.xml',
+        'views/product_templates_view.xml',
         'views/weha_smart_pos_config_view.xml',
         'views/weha_smart_pos_templates.xml'
     ],

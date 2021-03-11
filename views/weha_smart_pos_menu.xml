@@ -20,5 +20,11 @@
                 sequence="2"
                 groups="group_weha_smart_pos_user"/>
 
+          <menuitem id="weha_smart_pos_configuration_menu" 
+                name="Configuration"
+                parent="weha_smart_pos_mgmt_main_menu" 
+                sequence="3"
+                groups="group_weha_smart_pos_user"/>
+
     </data>
 </odoo>

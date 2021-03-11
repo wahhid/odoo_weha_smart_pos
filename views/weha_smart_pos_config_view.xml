@@ -84,7 +84,7 @@
             </field>
         </record>
         
-        <menuitem id="weha_smart_pos_config_menu" name="POS Config" parent="weha_smart_pos_master_menu"
+        <menuitem id="weha_smart_pos_config_menu" name="POS Config" parent="weha_smart_pos_configuration_menu"
             action="action_weha_smart_pos_config_act_window" sequence="1"/>
 
     </data>
