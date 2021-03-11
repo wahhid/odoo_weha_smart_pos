@@ -6,19 +6,19 @@
         <menuitem id="weha_smart_pos_mgmt_main_menu" 
                 name="Smart POS" 
                 sequence="16"
-                groups="group_smart_pos_user"/>
+                groups="group_weha_smart_pos_user"/>
         
         <menuitem id="weha_smart_pos_master_menu" 
                 name="Master"
                 parent="weha_smart_pos_mgmt_main_menu" 
                 sequence="1"
-                groups="group_smart_pos_user"/>
+                groups="group_weha_smart_pos_user"/>
 
         <menuitem id="weha_smart_pos_transaction_menu" 
                 name="Transaction"
                 parent="weha_smart_mgmt_main_menu" 
                 sequence="2"
-                groups="group_smart_pos_user"/>
+                groups="group_weha_smart_pos_user"/>
 
     </data>
 </odoo>
