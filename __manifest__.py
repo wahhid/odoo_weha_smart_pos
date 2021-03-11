@@ -17,7 +17,8 @@
         'views/product_templates_view.xml',
         'views/res_partner_view.xml',
         'views/weha_smart_pos_config_view.xml',
-        'views/weha_smart_pos_payment_method_view.xml',        
+        'views/weha_smart_pos_payment_method_view.xml',      
+        'views/weha_smart_pos_session_view.xml',        
         'views/weha_smart_pos_templates.xml'
     ],
     'application': True,
