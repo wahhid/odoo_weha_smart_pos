@@ -43,7 +43,7 @@
                                 <field name="code"/>
                             </group>
                             <group>
-                                <field name="smart_pos_payment_method_ids"/>
+                                <field name="smart_pos_payment_method_ids" widget="many2many_tags"/>
                             </group>
                         </group>
                     </sheet>

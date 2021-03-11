@@ -4,8 +4,8 @@ from odoo import models, fields
 class SmartPosConfig(models.Model):
     _name = 'smart.pos.config'
 
-    name = fields.Char('Name', size=255)
-    code = fields.Char('Code', size=5)
+    name = fields.Char('Name', size=255, required=True)
+    code = fields.Char('Code', size=5, required=True)
     currency_id = fields.Integer('Currency')
     pricelist_id = fields.Integer('Pricelist')
     company_id = fields.Many2one('res.company', 'Company', required=True)
