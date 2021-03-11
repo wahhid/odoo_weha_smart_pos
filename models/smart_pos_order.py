@@ -19,7 +19,7 @@ class SmartPosOrder(models.Model):
     smart_pos_session_id = fields.Many2one('smart.pos.session', 'Session #')
     partner_id = fields.Many2one('res.partner', 'Customer')
     user_id = fields.Many2one('res.user', 'User #')
-    state = fields.Selection()
+    state = fields.Selection(AVAILABLE_STATES, 'Status', default='unpaid')
 
     # id = Column(Integer, primary_key=True, autoincrement=True)
     # name = Column(String(255))
