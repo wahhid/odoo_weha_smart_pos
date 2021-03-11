@@ -12,7 +12,7 @@
     'data': [
         'data/weha_smart_pos_data.xml',
         'security/weha_smart_pos_security.xml',
-        'views/weha_smart_post_templates.xml'
+        'views/weha_smart_pos_templates.xml'
     ],
     'application': True,
     'installable': True,
