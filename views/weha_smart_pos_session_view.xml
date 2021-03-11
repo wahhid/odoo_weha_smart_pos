@@ -74,7 +74,7 @@
                     <field name="name" />
                     <field name="smart_pos_config_id"/>
                     <field name="session_date"/>
-                    <field name="operator_id"/>
+                    <field name="cashier_id"/>
                     <field name="state"/>
                 </search>
             </field>
