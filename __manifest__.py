@@ -10,6 +10,7 @@
     'website': 'https://www.weha-id.com',
     'depends': ['base'],
     'data': [
+        'data/weha_smart_pos_data.xml',
         'security/weha_smart_pos_security.xml',
         'views/weha_smart_post_templates.xml'
     ],
