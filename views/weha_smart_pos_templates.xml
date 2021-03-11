@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="pos_screen">
-        <nav class="navbar navbar-light bg-light justify-content-between">
-            <a class="navbar-brand">Smart POS</a>
-            <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </nav>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="text-center">Maintenance Website</h1>
+        <html lang="en">
+            <head>
+            <title>WEHE - Smart POS</title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            </head>
+            <body>
+                <nav class="navbar navbar-light bg-light justify-content-between">
+                    <a class="navbar-brand">Smart POS</a>
+                    <form class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </nav>
+                <div class="container">
                 </div>
-            </div>
-        </div>
+            </body>
+        </html>
     </template>
 </odoo>
