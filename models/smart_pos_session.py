@@ -14,7 +14,7 @@ class SmartPosSession(models.Model):
     date_open = fields.Datetime('Open Date Time', default=datetime.now())
     date_close = fields.Datetime('Close Date Time', default=datetime.now())
     smart_pos_config_id = fields.Many2one('smart.pos.config', 'Config', required=True)
-    cashier_id = fields.Many2one('res.user', 'Cashier', required=True)
+    cashier_id = fields.Many2one('res.users', 'Cashier', required=True)
     state = fields.Selection(AVAILABLE_STATES, 'Status', default='open')
     
 
