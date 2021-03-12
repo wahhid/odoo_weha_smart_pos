@@ -8,7 +8,7 @@ from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 _logger = logging.getLogger(__name__)
 
-expires_in = "weha_voucher_mgmt.access_token_expires_in"
+expires_in = "odoo_weha_smart_pos.access_token_expires_in"
 
 
 def nonce(length=40, prefix="access_token"):
