@@ -96,7 +96,7 @@
             </field>
         </record>
         
-        <menuitem id="weha_smart_pos_session_menu" name="POS Config" parent="weha_smart_pos_transaction_menu"
+        <menuitem id="weha_smart_pos_session_menu" name="POS Session" parent="weha_smart_pos_transaction_menu"
             action="action_weha_smart_pos_session_act_window" sequence="1"/>
 
     </data>

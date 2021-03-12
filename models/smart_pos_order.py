@@ -18,7 +18,9 @@ class SmartPosOrder(models.Model):
     amount_return = fields.Float('Amount Return')
     smart_pos_session_id = fields.Many2one('smart.pos.session', 'Session #')
     partner_id = fields.Many2one('res.partner', 'Customer')
-    user_id = fields.Many2one('res.user', 'User #')
+    user_id = fields.Many2one('res.users', 'User #')
+    smart_pos_order_line_ids = fields.One2many('smart.pos.order.line', 'smart_pos_order_id', 'Order Lines')
+    smart_pos_order_payment_ids = fields.One2many('smart.pos.order.payment', 'smart_pos_order_id', 'Order Payments')
     state = fields.Selection(AVAILABLE_STATES, 'Status', default='unpaid')
 
     # id = Column(Integer, primary_key=True, autoincrement=True)
@@ -46,5 +48,16 @@ class SmartPosOrder(models.Model):
 class SmartPosOrderLine(models.Model):
     _name = 'smart.pos.order.line'
 
+    smart_pos_order_id = fields.Many2one('smart.pos.order', 'Pos Order #')
+    description = fields.Char('Description', size=250)
+    product_id = fields.Many2one('product.template', 'Product')
+    qty = fields.Float('Quantity', default=1.0)
+    price_unit = fields.Float('Price')
+    
+
 class SmartPosOrderPayment(models.Model):
     _name = 'smart.pos.order.payment'
+
+    smart_pos_order_id = fields.Many2one('smart.pos.order', 'Pos Order #')
+    smart_pos_payment_method_id = fields.Many2one('smart.pos.payment.method', 'Payment Method')
+    amount_total = fields.Float('Amount Total')
