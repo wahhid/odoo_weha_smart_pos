@@ -82,9 +82,9 @@
         </record>
         
         <!-- Search view for "model" -->
-        <record id="view_weha_smart_pos_config_search" model="ir.ui.view">
-            <field name="name">view.weha.smart.pos.config.search</field>
-            <field name="model">smart.pos.config</field>
+        <record id="view_weha_smart_pos_order_search" model="ir.ui.view">
+            <field name="name">view.weha.smart.pos.order.search</field>
+            <field name="model">smart.pos.order</field>
             <field name="type">search</field>
             <field name="mode">primary</field>
             <field name="priority" eval="16" />
@@ -92,29 +92,31 @@
             <field name="arch" type="xml">
                 <search string="model_search">
                     <field name="name" />
-                    <field name="code" />
+                    <field name="date_order"/>
+                    <field name="partner_id"/>
+                    <field name="user_id"/>
                 </search>
             </field>
         </record>
         
         <!-- Main window action for "model" -->
-        <record id="action_weha_smart_pos_config_act_window" model="ir.actions.act_window">
+        <record id="action_weha_smart_pos_order_act_window" model="ir.actions.act_window">
             <field name="type">ir.actions.act_window</field>
-            <field name="name">Smart POS Config</field>
-            <field name="res_model">smart.pos.config</field>
+            <field name="name">Smart POS Order</field>
+            <field name="res_model">smart.pos.order</field>
             <field name="view_mode">tree,form</field>
             <field name="domain">[]</field>
             <field name="context">{}</field>
-            <field name="search_view_id" ref="view_weha_smart_pos_config_search" />
+            <field name="search_view_id" ref="view_weha_smart_pos_order_search" />
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
-                    Click to add new Smart Pos Config
+                    Click to add new Smart Pos Order
                 </p>
             </field>
         </record>
         
-        <menuitem id="weha_smart_pos_config_menu" name="POS Config" parent="weha_smart_pos_configuration_menu"
-            action="action_weha_smart_pos_config_act_window" sequence="1"/>
+        <menuitem id="weha_smart_pos_order_menu" name="POS Order" parent="weha_smart_pos_transaction_menu"
+            action="action_weha_smart_pos_order_act_window" sequence="2"/>
 
     </data>
 </odoo>
