@@ -10,6 +10,7 @@
     'website': 'https://www.weha-id.com',
     'depends': ['base', 'product','account','stock'],
     'data': [
+        'data/ir_config_param.xml',
         'data/weha_smart_pos_data.xml',
         'security/weha_smart_pos_security.xml',
         'security/ir.model.access.csv',
