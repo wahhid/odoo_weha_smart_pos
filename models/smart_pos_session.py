@@ -22,3 +22,11 @@ class SmartPosSession(models.Model):
     state = fields.Selection(AVAILABLE_STATES, 'Status', default='open')
     
 
+class SmartPosSessionPayment(models.Model):
+    _name = 'smart.pos.session.payment'
+
+    smart_pos_session_id = fields.Many2one('smart.pos.session', 'Pos Session #')
+    smart_pos_payment_method_id = fields.Many2one('smart.pos.payment.method', 'Payment Method')
+    amount_total = fields.Float('Amount Total')
+
+
