@@ -8,7 +8,7 @@
     'category': 'Point of sale',
     'author': 'WEHA',
     'website': 'https://www.weha-id.com',
-    'depends': ['base', 'product'],
+    'depends': ['base', 'product','account'],
     'data': [
         'data/weha_smart_pos_data.xml',
         'security/weha_smart_pos_security.xml',

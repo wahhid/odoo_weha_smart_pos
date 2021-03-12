@@ -12,6 +12,7 @@ class SmartPosOrder(models.Model):
     _name = 'smart.pos.order'
 
     name = fields.Char('Name', size=255)
+    date_order = fields.Datetime('Order Date')
     amount_paid = fields.Float('Amount Paid')
     amount_total = fields.Float('Amount Total')
     amount_tax = fields.Float('Amount Tax')
@@ -53,6 +54,9 @@ class SmartPosOrderLine(models.Model):
     product_id = fields.Many2one('product.template', 'Product')
     qty = fields.Float('Quantity', default=1.0)
     price_unit = fields.Float('Price')
+    tax_id = fields.Many2one('account.tax', 'Tax')
+    amount_tax = fields.Float('Amount Tax', default=0.0)
+    amount_total = fields.Float('Amount Total', default=0.0)
     
 
 class SmartPosOrderPayment(models.Model):
