@@ -80,7 +80,7 @@ class WehaSmartPosController(http.Controller):
         product_product_ids = http.request.env['product.product'].sudo().search([])
         _logger.info(product_product_ids.read(['name','barcode','default_code','lst_price','standard_price']))
         products = json.dumps(product_product_ids.read(['name','barcode','default_code','lst_price','standard_price']))
-        result = product.replace("\\", "") 
+        result = products.replace("\\", "") 
         return result
     
 
