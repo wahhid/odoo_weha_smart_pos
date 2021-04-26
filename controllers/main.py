@@ -33,7 +33,7 @@ class WehaSmartPosController(http.Controller):
 
     @validate_token
     @http.route("/api/smartpos/v1.0/closepossession", type="json", auth="none", methods=["POST"], csrf=False)
-    def pos_close_pos_session(self,, **post):
+    def pos_close_pos_session(self, **post):
         pass
 
     @validate_token
