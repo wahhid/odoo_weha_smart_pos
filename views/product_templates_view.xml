@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="product.product_template_only_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//notebook" position="inside">
-                    <page string="Smart POS">
+                    <page name="smartpos" string="Smart POS">
                         <group>
                             <group>
                                 <field name="is_avaiable_on_pos"/>
