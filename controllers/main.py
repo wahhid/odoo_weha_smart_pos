@@ -77,8 +77,8 @@ class WehaSmartPosController(http.Controller):
     @http.route("/api/smartpos/v1.0/sync_product", type="json", auth="none", methods=["POST"], csrf=False)
     def pos_sync_product(self, **post):
         #Sync Product and Pos Product Category
-        product_product_ids = http.request.env['product.product'].sudo().search(['name','barcode','default_code','lst_price','standard_price'])
-        _logger.info(product_product_ids.read())
+        product_product_ids = http.request.env['product.product'].sudo().search([])
+        _logger.info(product_product_ids.read(['name','barcode','default_code','lst_price','standard_price']))
         return "Success"
     
 
