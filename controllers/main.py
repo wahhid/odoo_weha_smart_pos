@@ -7,7 +7,7 @@ import json
 import werkzeug.wrappers
 from odoo.exceptions import AccessError
 from odoo.addons.weha_smart_pos.common import invalid_response, valid_response
-
+import sys
 from odoo import http
 
 from odoo.addons.weha_smart_pos.common import (
@@ -79,8 +79,8 @@ class WehaSmartPosController(http.Controller):
         #Sync Product and Pos Product Category
         product_product_ids = http.request.env['product.product'].sudo().search([])
         _logger.info(product_product_ids.read(['name','barcode','default_code','lst_price','standard_price']))
-        products = json.dumps(product_product_ids.read(['name','barcode','default_code','lst_price','standard_price']))
-        return  json.dumps({"products": products})
+        products = json.dumps(product_product_ids.read(['name','barcode','default_code','lst_price','standard_price']), sys.stdout)
+        return  json.dumps({"products": products}, sys.stdout)
     
 
     
