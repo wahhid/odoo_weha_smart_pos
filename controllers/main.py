@@ -1,8 +1,23 @@
-# -*- coding: utf-8 -*-
+import re
+import ast
+import functools
+from datetime import datetime, date
+import logging
+import json
+import werkzeug.wrappers
+from odoo.exceptions import AccessError
+from odoo.addons.weha_smart_pos.common import invalid_response, valid_response
 
 from odoo import http
-from odoo.http import content_disposition, request
-import logging
+
+from odoo.addons.weha_smart_pos.common import (
+    extract_arguments,
+    invalid_response,
+    valid_response,
+)
+
+
+from odoo.http import request
 
 
 _logger = logging.getLogger(__name__)
