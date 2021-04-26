@@ -78,8 +78,8 @@ class WehaSmartPosController(http.Controller):
     def pos_sync_product(self, **post):
         #Sync Product and Pos Product Category
         product_product_ids = http.request.env['product.product'].sudo().search([])
-        return json.dumps(product_product_ids.read())
-
+        _logger.info(product_product_ids.read())
+        return "Success"
     
 
     
