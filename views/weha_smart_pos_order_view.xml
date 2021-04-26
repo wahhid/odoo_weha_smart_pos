@@ -51,6 +51,14 @@
                             <group string="Time Information">
                                 <field name="date_order"/>
                             </group>
+                            <group string="Order Information">
+                                <field name="smart_pos_session_id"/>
+                                <field name="partner_id"/>
+                            </group>
+                            <group string="Transaction Information">
+                                <field name="amount_total"/>
+                                <field name="amount_paid"/>
+                            </group>
                         </group>
                         <notebook>
                             <page name="order_line" string="Order Line">
