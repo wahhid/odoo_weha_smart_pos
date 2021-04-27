@@ -72,7 +72,7 @@ class WehaSmartPosController(http.Controller):
                 'message':'OK'
             }
         }
-        return json.dumps(output)
+        return output
 
     @validate_token
     @http.route("/api/smartpos/v1.0/createposorder", type="json", auth="none", methods=["POST"], csrf=False)
