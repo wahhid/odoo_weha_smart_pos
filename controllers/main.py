@@ -66,7 +66,13 @@ class WehaSmartPosController(http.Controller):
             ('cashier_id', '=', data['cashier_id'])
         ]
         _logger.info(domain)
-        return json.dumps({"err": False})
+        output = {
+            'results':{
+                'code':200,
+                'message':'OK'
+            }
+        }
+        return json.dumps(output)
 
     @validate_token
     @http.route("/api/smartpos/v1.0/createposorder", type="json", auth="none", methods=["POST"], csrf=False)
