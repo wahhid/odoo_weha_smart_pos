@@ -56,6 +56,14 @@
                                 <field name="date_close"/>
                             </group>
                         </group>
+                        <notebook>
+                            <page name="pos_orders" string="Pos Orders">
+                                
+                            </page>
+                            <page name="pos_order_payments" string="Pos Order Payments">
+                                
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>

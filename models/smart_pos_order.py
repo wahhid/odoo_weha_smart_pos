@@ -56,6 +56,7 @@ class SmartPosOrderLine(models.Model):
     price_unit = fields.Float('Price')
     tax_id = fields.Many2one('account.tax', 'Tax')
     amount_tax = fields.Float('Amount Tax', default=0.0)
+    amount_discount = fields.Float('Amount Discount', default=0.0)
     amount_total = fields.Float('Amount Total', default=0.0)
     
 
@@ -64,4 +65,6 @@ class SmartPosOrderPayment(models.Model):
 
     smart_pos_order_id = fields.Many2one('smart.pos.order', 'Pos Order #')
     smart_pos_payment_method_id = fields.Many2one('smart.pos.payment.method', 'Payment Method')
-    amount_total = fields.Float('Amount Total')
+    discount_in_percentage = fields.Float('Discount %', default=0.0)
+    amount_discount = fields.Float('Amount Discount', default=0.0)
+    amount_total = fields.Float('Amount Total', default=0.0)
