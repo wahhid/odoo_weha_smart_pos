@@ -61,7 +61,11 @@ class WehaSmartPosController(http.Controller):
     @validate_token
     @http.route("/api/smartpos/v1.0/createpossession", type="json", auth="none", methods=["POST"], csrf=False)
     def pos_create_pos_session(self, **post):
-        pass
+        data = json.loads(request.httprequest.data)
+        domain = [
+            ('smart_pos_config_id', '=', data['smart_pos_config_id']),
+        ]
+        return json.dump({"err": False})
 
     @validate_token
     @http.route("/api/smartpos/v1.0/createposorder", type="json", auth="none", methods=["POST"], csrf=False)

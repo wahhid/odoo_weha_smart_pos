@@ -9,6 +9,7 @@ class SmartPosConfig(models.Model):
     currency_id = fields.Integer('Currency')
     pricelist_id = fields.Integer('Pricelist')
     company_id = fields.Many2one('res.company', 'Company', required=True)
+    account_journal_id = fields.Many2one('account.journal', 'Journal')
     smart_pos_payment_method_ids = fields.Many2many('smart.pos.payment.method', 'smart_pos_config_smart_pos_payment_method_rel', 'smart_pos_config_id', 'smart_pos_payment_method_id', 'Available Payment Methods')
 
 
