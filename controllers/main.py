@@ -66,12 +66,7 @@ class WehaSmartPosController(http.Controller):
             ('cashier_id', '=', data['cashier_id'])
         ]
         _logger.info(domain)
-        output = {
-            'results':{
-                'code':200,
-                'message':'OK'
-            }
-        }
+        output = []
         return output
 
     @validate_token
