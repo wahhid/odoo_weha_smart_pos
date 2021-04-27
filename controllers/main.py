@@ -58,16 +58,33 @@ class WehaSmartPosController(http.Controller):
         return 'Success'
 
     @validate_token
-    @http.route("/api/smartpos/v1.0/createpossession", type="json", auth="none", methods=["POST"], csrf=False)
+    @http.route("/api/smartpos/v1.0/createpossession", type="http", auth="none", methods=["POST"], csrf=False)
     def pos_create_pos_session(self, **post):
-        data = json.loads(request.httprequest.data)
+        name = post['name'] or False if 'name' in post else False
+        smart_pos_config_id = post['smart_pos_config_id'] or False if 'smart_pos_config_id' in post else False
+        cashier_id = post['cashier_id'] or False if 'cashier_id' in post else False
+
+        _fields_includes_in_body = all([date, 
+                                        time, 
+                                        store_id,
+                                        member_id,
+                                        voucher_ean])
+        if not _fields_includes_in_body:
+                data =  {
+                    "err": True,
+                    "message": "Missing fields",
+                    "data": []
+                }
+                return valid_response(data)
+
         domain = [
             ('smart_pos_config_id', '=', data['smart_pos_config_id']),
             ('cashier_id', '=', data['cashier_id'])
         ]
         _logger.info(domain)
+        vals = []
         output = []
-        return output
+        return valid_response(output)
 
     @validate_token
     @http.route("/api/smartpos/v1.0/createposorder", type="json", auth="none", methods=["POST"], csrf=False)
