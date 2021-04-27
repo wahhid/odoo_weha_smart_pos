@@ -50,7 +50,6 @@ class WehaSmartPosController(http.Controller):
     def pos(self, **args):
         return http.request.render('weha_smart_pos.pos_screen',{})
 
-
     @validate_token
     @http.route("/api/smartpos/v1.0/uploadtransaction", type="json", auth="none", methods=["POST"], csrf=False)
     def pos_upload_transaction(self, **post):
@@ -64,7 +63,9 @@ class WehaSmartPosController(http.Controller):
         data = json.loads(request.httprequest.data)
         domain = [
             ('smart_pos_config_id', '=', data['smart_pos_config_id']),
+            ('cashier_id', '=', data['cashier_id'])
         ]
+        _logger.info(domain)
         return json.dumps({"err": False})
 
     @validate_token
