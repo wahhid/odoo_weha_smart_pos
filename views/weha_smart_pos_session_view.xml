@@ -58,10 +58,21 @@
                         </group>
                         <notebook>
                             <page name="pos_orders" string="Pos Orders">
-                                
+                                <field name="smart_pos_order_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="date_order"/>
+                                        <field name="partner_id"/>
+                                    </tree>
+                                </field>
                             </page>
                             <page name="pos_order_payments" string="Pos Order Payments">
-                                
+                                <field name="smart_pos_session_payment_ids">
+                                    <tree>
+                                        <field name="smart_pos_payment_method_id"/>
+                                        <field name="amount_total"/>
+                                    </tree>
+                                </field>
                             </page>
                         </notebook>
                     </sheet>
