@@ -65,7 +65,7 @@ class WehaSmartPosController(http.Controller):
         domain = [
             ('smart_pos_config_id', '=', data['smart_pos_config_id']),
         ]
-        return json.dump({"err": False})
+        return json.dumps({"err": False})
 
     @validate_token
     @http.route("/api/smartpos/v1.0/createposorder", type="json", auth="none", methods=["POST"], csrf=False)
