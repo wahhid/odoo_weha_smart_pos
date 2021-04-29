@@ -121,7 +121,7 @@ class WehaSmartPosController(http.Controller):
         #     ]
         # }
         vals = {
-            "data_order": data['date_order'],
+            "date_order": data['date_order'],
             "user_id": data['user_id'],
             "smart_pos_session_id": data['smart_pos_session_id'],
             "amount_total": data['amount_total'],
