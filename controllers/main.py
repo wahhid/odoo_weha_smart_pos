@@ -64,11 +64,10 @@ class WehaSmartPosController(http.Controller):
         smart_pos_config_id = post['smart_pos_config_id'] or False if 'smart_pos_config_id' in post else False
         cashier_id = post['cashier_id'] or False if 'cashier_id' in post else False
 
-        _fields_includes_in_body = all([date, 
-                                        time, 
-                                        store_id,
-                                        member_id,
-                                        voucher_ean])
+        _fields_includes_in_body = all([name, 
+                                        smart_pos_config_id, 
+                                        cashier_id])
+                                        
         if not _fields_includes_in_body:
                 data =  {
                     "err": True,
@@ -77,10 +76,13 @@ class WehaSmartPosController(http.Controller):
                 }
                 return valid_response(data)
 
+        #Check Smart Pos Config
+        
         domain = [
             ('smart_pos_config_id', '=', data['smart_pos_config_id']),
             ('cashier_id', '=', data['cashier_id'])
         ]
+
         _logger.info(domain)
         vals = []
         output = []
