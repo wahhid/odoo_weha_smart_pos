@@ -8,6 +8,7 @@ import werkzeug.wrappers
 from odoo.exceptions import AccessError
 from odoo.addons.weha_smart_pos.common import invalid_response, valid_response
 import sys
+import pytz
 from odoo import http
 
 from odoo.addons.weha_smart_pos.common import (
@@ -121,7 +122,7 @@ class WehaSmartPosController(http.Controller):
         #     ]
         # }
         vals = {
-            "date_order": data['date_order'],
+            "date_order": datetime.strptime(data['date_order'],'%Y-%m-$d %H:%M:%S').astimezone(pytz.utc).strftime('%Y-%m-$d %H:%M:%S'),
             "user_id": data['user_id'],
             "smart_pos_session_id": data['smart_pos_session_id'],
             "amount_total": data['amount_total'],
