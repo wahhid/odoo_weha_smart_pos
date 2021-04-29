@@ -121,10 +121,11 @@ class WehaSmartPosController(http.Controller):
         #     ]
         # }
         vals = {
-            "user_id": 1,
-            "smart_pos_session_id": 1,
-            "amount_total": 12000,
-            "amount_paid": 12000,
+            "data_order": data['date_order'],
+            "user_id": data['user_id'],
+            "smart_pos_session_id": data['smart_pos_session_id'],
+            "amount_total": data['amount_total'],
+            "amount_paid": data['amount_paid']
         }
         smart_pos_order_id = http.request.env['smart.pos.order'].create(vals)
         if not smart_pos_order_id:
