@@ -126,7 +126,8 @@ class WehaSmartPosController(http.Controller):
             "user_id": data['user_id'],
             "smart_pos_session_id": data['smart_pos_session_id'],
             "amount_total": data['amount_total'],
-            "amount_paid": data['amount_paid']
+            "amount_paid": data['amount_paid'],
+            "state": "paid"
         }
         order_line_ids = []
         for smart_pos_order_line_id in data['smart_pos_order_line_ids']:
