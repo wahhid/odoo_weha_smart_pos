@@ -122,7 +122,7 @@ class WehaSmartPosController(http.Controller):
         #     ]
         # }
         vals = {
-            "date_order": datetime.strptime(data['date_order'],'%Y-%m-$d %H:%M:%S').astimezone(pytz.utc).strftime('%Y-%m-$d %H:%M:%S'),
+            "date_order": datetime.strptime(data['date_order'],'%Y-%m-$d %H:%M:%s').astimezone(pytz.utc).strftime('%Y-%m-$d %H:%M:%S'),
             "user_id": data['user_id'],
             "smart_pos_session_id": data['smart_pos_session_id'],
             "amount_total": data['amount_total'],
