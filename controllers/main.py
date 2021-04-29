@@ -77,7 +77,7 @@ class WehaSmartPosController(http.Controller):
                 return valid_response(data)
 
         #Check Smart Pos Config
-        
+        smart_pos_config_id = http.request.env['smart.pos.config'].search([('code','=', )])
         domain = [
             ('smart_pos_config_id', '=', data['smart_pos_config_id']),
             ('cashier_id', '=', data['cashier_id'])
@@ -91,7 +91,16 @@ class WehaSmartPosController(http.Controller):
     @validate_token
     @http.route("/api/smartpos/v1.0/createposorder", type="json", auth="none", methods=["POST"], csrf=False)
     def pos_create_pos_order(self, **post):
-        pass
+        data = json.loads(request.httprequest.data)
+        data_return =  {
+            "err": False,
+            "message": "POS Order Created",
+            "data": {
+                "id": 1
+            }      
+        }
+        return valid_response(data_return)
+
 
     @validate_token
     @http.route("/api/smartpos/v1.0/closepossession", type="json", auth="none", methods=["POST"], csrf=False)
