@@ -99,7 +99,7 @@ class WehaSmartPosController(http.Controller):
                 "id": 1
             }      
         }
-        return json.dumps(data_return)
+        return data_return
 
 
     @validate_token
