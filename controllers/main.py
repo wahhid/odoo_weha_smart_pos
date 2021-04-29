@@ -143,7 +143,7 @@ class WehaSmartPosController(http.Controller):
                 }
             )
             order_line_ids.append(line_vals)
-        vals.update({smart_pos_order_line_ids: order_line_ids})
+        vals.update({"smart_pos_order_line_ids": order_line_ids})
 
         smart_pos_order_id = http.request.env['smart.pos.order'].create(vals)
         if not smart_pos_order_id:
