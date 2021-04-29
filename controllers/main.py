@@ -121,8 +121,7 @@ class WehaSmartPosController(http.Controller):
         #     ]
         # }
         vals = {
-            "smart_pos_config_id": 1,
-            "cashier_id": 1,
+            "user_id": 1,
             "smart_pos_session_id": 1,
             "amount_total": 12000,
             "amount_paid": 12000,
