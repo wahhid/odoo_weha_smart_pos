@@ -128,6 +128,23 @@ class WehaSmartPosController(http.Controller):
             "amount_total": data['amount_total'],
             "amount_paid": data['amount_paid']
         }
+        order_line_ids = []
+        for smart_pos_order_line_id in data['smart_pos_order_line_ids']:
+            line_vals = (0,0,
+                {
+                    "description": smart_pos_order_line_id['description'],
+                    "product_id": 1,
+                    "qty": 1,
+                    "price_unit": 12000,
+                    "tax_id": false,
+                    "amount_tax": 0,
+                    "amount_discount": 0,
+                    "amount_total": 12000,
+                }
+            )
+            order_line_ids.append(line_vals)
+        vals.update({smart_pos_order_line_ids: order_line_ids})
+
         smart_pos_order_id = http.request.env['smart.pos.order'].create(vals)
         if not smart_pos_order_id:
             data_return =  {
