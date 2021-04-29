@@ -136,7 +136,7 @@ class WehaSmartPosController(http.Controller):
                     "product_id": 1,
                     "qty": 1,
                     "price_unit": 12000,
-                    "tax_id": false,
+                    "tax_id": False,
                     "amount_tax": 0,
                     "amount_discount": 0,
                     "amount_total": 12000,
