@@ -92,13 +92,56 @@ class WehaSmartPosController(http.Controller):
     @http.route("/api/smartpos/v1.0/createposorder", type="json", auth="none", methods=["POST"], csrf=False)
     def pos_create_pos_order(self, **post):
         data = json.loads(request.httprequest.data)
-        data_return =  {
-            "err": False,
-            "message": "POS Order Created",
-            "data": {
-                "id": 1
-            }      
+        #Data Example
+        # {
+        #     "smart_pos_config_id": 1,
+        #     "cashier_id": 1,
+        #     "smart_pos_session_id": 1,
+        #     "amount_total": 12000,
+        #     "amount_paid": 12000,
+        #     "smart_pos_order_line_ids": [
+        #         {
+        #             "description": "Fanta",
+        #             "product_id": 1,
+        #             "qty": 1,
+        #             "price_unit": 12000,
+        #             "tax_id": false,
+        #             "amount_tax": 0,
+        #             "amount_discount": 0,
+        #             "amount_total": 12000
+        #         }
+        #     ],
+        #     "smart_pos_order_payment_ids": [
+        #         {
+        #             "smart_pos_payment_method_id": 1,
+        #             "discount_in_percentage": 0.0,
+        #             "amount_discount": 0.0,
+        #             "amount_total": 12000
+        #         }
+        #     ]
+        # }
+        vals = {
+            "smart_pos_config_id": 1,
+            "cashier_id": 1,
+            "smart_pos_session_id": 1,
+            "amount_total": 12000,
+            "amount_paid": 12000,
         }
+        smart_pos_order_id = http.request.env['smart_pos_order'].create(vals)
+        if not smart_pos_order_id:
+            data_return =  {
+                "err": True,
+                "message": "POS Order Created Eror",
+                "data": {}      
+            }
+        else:
+            data_return =  {
+                "err": False,
+                "message": "POS Order Created",
+                "data": {
+                    "id": smart_pos_order_id.id
+                }      
+            }
         return data_return
 
 
