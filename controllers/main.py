@@ -127,7 +127,7 @@ class WehaSmartPosController(http.Controller):
             "amount_total": 12000,
             "amount_paid": 12000,
         }
-        smart_pos_order_id = http.request.env['smart_pos_order'].create(vals)
+        smart_pos_order_id = http.request.env['smart.pos.order'].create(vals)
         if not smart_pos_order_id:
             data_return =  {
                 "err": True,
