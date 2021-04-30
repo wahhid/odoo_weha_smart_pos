@@ -122,6 +122,7 @@ class WehaSmartPosController(http.Controller):
         #     ]
         # }
         vals = {
+            "name": data['name'],
             "date_order": datetime.strptime(data['date_order'],'%Y-%m-%d %H:%M:%S').astimezone(pytz.utc).strftime('%Y-%m-%d %H:%M:%S'),
             "user_id": data['user_id'],
             "smart_pos_session_id": data['smart_pos_session_id'],
@@ -146,6 +147,19 @@ class WehaSmartPosController(http.Controller):
             order_line_ids.append(line_vals)
         vals.update({"smart_pos_order_line_ids": order_line_ids})
 
+        payment_line_ids = []
+        for smart_pos_order_payment_id in data['smart_pos_order_payment_ids']:
+            line_vals = (0,0, 
+                {
+                    "smart_pos_payment_method_id":1,
+                    "discount_in_percentage": 0.0,
+                    "amount_discount": 0.0,
+                    "amount_total": 12000   
+                }
+            )
+            payment_line_ids.append(line_vals)
+        vals.update({"smart_pos_order_payment_ids": payment_line_ids})
+        
         smart_pos_order_id = http.request.env['smart.pos.order'].create(vals)
         if not smart_pos_order_id:
             data_return =  {
