@@ -12,14 +12,13 @@ class SmartPosOrder(models.Model):
     _name = 'smart.pos.order'
 
     def create_stock_picking(self):
-        #picking_type_id = smart_pos_session_id.smart_pos_config_id.
+        picking_type_id = smart_pos_session_id.smart_pos_config_id.stock_picking_type_id
         vals = {
             'partner_id': self.partner.id if self.partner else False,
             'user_id': False,
             'picking_type_id': 6,
-            'move_type': 'direct',
-            'location_id': location_id,
-            'location_dest_id': location_dest_id
+            'location_id': stock_picking_type_id.default_location_src_id.id,
+            'location_dest_id': location_dest_id.default_location_dest_id.id
         }
 
         stock_picking_id = self.env['stock.picking'].create(vals)
