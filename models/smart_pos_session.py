@@ -1,5 +1,8 @@
 from odoo import models, fields 
 from datetime import datetime, date
+import logging
+
+_logger = logging.getLogger(__name__)
 
 AVAILABLE_STATES  = [
     ('open','Open'),
@@ -12,8 +15,16 @@ class SmartPosSession(models.Model):
 
     def trans_close(self):
         #Calculate Total Payment Per Payment Method
-
-        pass 
+        strSQL = """
+            SELECT a.smart_pos_payment_method_id, sum(a.amount_total) FROM smart_pos_order_payment a 
+            LEFT JOIN smart_pos_order b ON a.smart_pos_order_id = b.id
+            WHERE b.smart_pos_session_id = {}
+        """.format(self.id)
+        
+        self.env.cr.execute(strSQL)
+        pos_order_payments = self.env.cr.fetchall()
+        for pos_order_payment in  pos_order_payments:
+            _logger.info(pos_order_payment)
 
     
     name = fields.Char('Name', size=100)
