@@ -138,9 +138,9 @@ class WehaSmartPosController(http.Controller):
                     "product_id": smart_pos_order_line_id['product_id'],
                     "qty": smart_pos_order_line_id['qty'],
                     "price_unit": smart_pos_order_line_id['price_unit'],
-                    "tax_id": False,
-                    "amount_tax": 0,
-                    "amount_discount": 0,
+                    "tax_id": smart_pos_order_line_id['tax_id'],
+                    "amount_tax": smart_pos_order_line_id['amount_tax'],
+                    "amount_discount": smart_pos_order_line_id['amount_discount'],
                     "amount_total": smart_pos_order_line_id['amount_total'],
                 }
             )
@@ -152,8 +152,8 @@ class WehaSmartPosController(http.Controller):
             line_vals = (0,0, 
                 {
                     "smart_pos_payment_method_id": smart_pos_order_payment_id['smart_pos_payment_method_id'],
-                    "discount_in_percentage": 0.0,
-                    "amount_discount": 0.0,
+                    "discount_in_percentage": smart_pos_order_payment_id['discount_in_percentage'],
+                    "amount_discount": smart_pos_order_payment_id['amount_discount'],
                     "amount_total": smart_pos_order_payment_id['amount_total']   
                 }
             )
