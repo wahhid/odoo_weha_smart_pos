@@ -14,6 +14,10 @@ class SmartPosSession(models.Model):
 
 
     def trans_close(self):
+        #Delete Current Pos Session Payment
+        for smart_pos_session_payment_id in self.smart_pos_session_payment_ids:
+            smart_pos_session_payment_id.unlink()
+
         #Calculate Total Payment Per Payment Method
         strSQL = """
             SELECT a.smart_pos_payment_method_id, sum(a.amount_total) FROM smart_pos_order_payment a 
