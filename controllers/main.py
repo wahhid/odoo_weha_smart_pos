@@ -154,7 +154,7 @@ class WehaSmartPosController(http.Controller):
                     "smart_pos_payment_method_id": smart_pos_order_payment_id['smart_pos_payment_method_id'],
                     "discount_in_percentage": 0.0,
                     "amount_discount": 0.0,
-                    "amount_total": smart_pos_payment_method_id['amount_total']   
+                    "amount_total": smart_pos_order_payment_id['amount_total']   
                 }
             )
             payment_line_ids.append(line_vals)
