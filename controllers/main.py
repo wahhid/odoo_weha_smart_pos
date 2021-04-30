@@ -135,13 +135,13 @@ class WehaSmartPosController(http.Controller):
             line_vals = (0,0,
                 {
                     "description": smart_pos_order_line_id['description'],
-                    "product_id": 1,
-                    "qty": 1,
-                    "price_unit": 12000,
+                    "product_id": smart_pos_order_line_id['product_id'],
+                    "qty": smart_pos_order_line_id['qty'],
+                    "price_unit": smart_pos_order_line_id['price_unit'],
                     "tax_id": False,
                     "amount_tax": 0,
                     "amount_discount": 0,
-                    "amount_total": 12000,
+                    "amount_total": smart_pos_order_line_id['amount_total'],
                 }
             )
             order_line_ids.append(line_vals)
@@ -151,10 +151,10 @@ class WehaSmartPosController(http.Controller):
         for smart_pos_order_payment_id in data['smart_pos_order_payment_ids']:
             line_vals = (0,0, 
                 {
-                    "smart_pos_payment_method_id":1,
+                    "smart_pos_payment_method_id": smart_pos_order_payment_id['smart_pos_payment_method_id'],
                     "discount_in_percentage": 0.0,
                     "amount_discount": 0.0,
-                    "amount_total": 12000   
+                    "amount_total": smart_pos_payment_method_id['amount_total']   
                 }
             )
             payment_line_ids.append(line_vals)
