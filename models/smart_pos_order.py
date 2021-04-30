@@ -24,6 +24,7 @@ class SmartPosOrder(models.Model):
         stock_picking_id = self.env['stock.picking'].create(vals)
         if not stock_picking_id:
             raise Warning("Error picking process")
+        self.stock_picking_id = stock_picking_id
 
     name = fields.Char('Name', size=255)
     date_order = fields.Datetime('Order Date')
