@@ -12,7 +12,7 @@ class SmartPosOrder(models.Model):
     _name = 'smart.pos.order'
 
     def create_stock_picking(self):
-        picking_type_id = smart_pos_session_id.smart_pos_config_id.stock_picking_type_id
+        picking_type_id = self.smart_pos_session_id.smart_pos_config_id.stock_picking_type_id
         vals = {
             'partner_id': self.partner.id if self.partner else False,
             'user_id': False,
