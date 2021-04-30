@@ -17,8 +17,8 @@ class SmartPosOrder(models.Model):
             'partner_id': self.partner_id.id if self.partner_id else False,
             'user_id': False,
             'picking_type_id': 6,
-            'location_id': stock_picking_type_id.default_location_src_id.id,
-            'location_dest_id': location_dest_id.default_location_dest_id.id
+            'location_id': picking_type_id.default_location_src_id.id,
+            'location_dest_id': picking_type_id.default_location_dest_id.id
         }
 
         stock_picking_id = self.env['stock.picking'].create(vals)
