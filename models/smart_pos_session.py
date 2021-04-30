@@ -39,6 +39,7 @@ class SmartPosSession(models.Model):
 
     
     name = fields.Char('Name', size=100)
+    ref = fields.Char('Ref', size=100)
     session_date = fields.Date('Session Date', default=date.today())
     date_open = fields.Datetime('Open Date Time', default=datetime.now())
     date_close = fields.Datetime('Close Date Time', default=datetime.now())

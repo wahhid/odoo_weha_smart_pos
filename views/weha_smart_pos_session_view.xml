@@ -51,6 +51,7 @@
                                 <field name="cashier_id"/>
                             </group>
                             <group string="Time Information">
+                                <field name="ref"/>
                                 <field name="session_date"/>
                                 <field name="date_open"/>
                                 <field name="date_close"/>
