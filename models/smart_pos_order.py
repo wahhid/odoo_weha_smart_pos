@@ -12,10 +12,16 @@ class SmartPosOrder(models.Model):
     _name = 'smart.pos.order'
 
     def create_stock_picking(self):
+        #picking_type_id = smart_pos_session_id.smart_pos_config_id.
         vals = {
-            'picking_type_id': 6, 
-            'origin': self.name
+            'partner_id': self.partner.id if self.partner else False,
+            'user_id': False,
+            'picking_type_id': 6,
+            'move_type': 'direct',
+            'location_id': location_id,
+            'location_dest_id': location_dest_id
         }
+
         stock_picking_id = self.env['stock.picking'].create(vals)
         if not stock_picking_id:
             raise Warning("Error picking process")

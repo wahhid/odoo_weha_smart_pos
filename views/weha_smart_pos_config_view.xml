@@ -44,6 +44,7 @@
                                 <field name="company_id"/>
                             </group>
                             <group>
+                                <field name="stock_picking_type_id"/>
                                 <field name="smart_pos_payment_method_ids" widget="many2many_tags"/>
                             </group>
                         </group>
