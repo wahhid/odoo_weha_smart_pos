@@ -19,6 +19,7 @@ class SmartPosSession(models.Model):
             SELECT a.smart_pos_payment_method_id, sum(a.amount_total) FROM smart_pos_order_payment a 
             LEFT JOIN smart_pos_order b ON a.smart_pos_order_id = b.id
             WHERE b.smart_pos_session_id = {}
+            GROUP BY a.smart_pos_payment_method_id
         """.format(self.id)
         
         self.env.cr.execute(strSQL)
