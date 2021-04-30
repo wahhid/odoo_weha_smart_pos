@@ -1,5 +1,5 @@
-from odoo import models, fields 
-
+from odoo import api, models, fields 
+from odoo.exceptions import Warning, ValidationError
 
 AVAILABLE_STATES = [
     ('unpaid','UnPaid'),
@@ -12,7 +12,13 @@ class SmartPosOrder(models.Model):
     _name = 'smart.pos.order'
 
     def create_stock_picking(self):
-        pass
+        vals = {
+            'picking_type_id': 6, 
+            'origin': self.name
+        }
+        stock_picking_id = self.env['stock.picking'].create(vals)
+        if not stock_picking_id:
+            raise Warning("Error picking process")
 
     name = fields.Char('Name', size=255)
     date_order = fields.Datetime('Order Date')
@@ -49,6 +55,12 @@ class SmartPosOrder(models.Model):
     # to_invoice = Column(Boolean)
     # state = Column(String(50), default='unpaid')
 
+    @api.model
+    def create(self, vals):
+        res = super(SmartPosOrder, self).create(vals)
+        res.create_stock_picking()
+        return res
+        
 
 class SmartPosOrderLine(models.Model):
     _name = 'smart.pos.order.line'
