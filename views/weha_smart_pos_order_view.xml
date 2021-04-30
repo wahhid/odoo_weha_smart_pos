@@ -54,6 +54,7 @@
                             <group string="Order Information">
                                 <field name="smart_pos_session_id"/>
                                 <field name="partner_id"/>
+                                <field name="stock_picking_id"/>
                             </group>
                             <group string="Transaction Information">
                                 <field name="amount_total"/>

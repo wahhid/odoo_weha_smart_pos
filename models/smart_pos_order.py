@@ -11,6 +11,9 @@ AVAILABLE_STATES = [
 class SmartPosOrder(models.Model):
     _name = 'smart.pos.order'
 
+    def create_stock_picking(self):
+        pass
+
     name = fields.Char('Name', size=255)
     date_order = fields.Datetime('Order Date')
     amount_paid = fields.Float('Amount Paid')
@@ -20,6 +23,7 @@ class SmartPosOrder(models.Model):
     smart_pos_session_id = fields.Many2one('smart.pos.session', 'Session #')
     partner_id = fields.Many2one('res.partner', 'Customer')
     user_id = fields.Many2one('res.users', 'User #')
+    stock_picking_id = fields.Many2one('stock.picking','Picking #', readonly=True)
     smart_pos_order_line_ids = fields.One2many('smart.pos.order.line', 'smart_pos_order_id', 'Order Lines')
     smart_pos_order_payment_ids = fields.One2many('smart.pos.order.payment', 'smart_pos_order_id', 'Order Payments')
     state = fields.Selection(AVAILABLE_STATES, 'Status', default='unpaid')
