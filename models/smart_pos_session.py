@@ -30,6 +30,12 @@ class SmartPosSession(models.Model):
         pos_order_payments = self.env.cr.fetchall()
         for pos_order_payment in  pos_order_payments:
             _logger.info(pos_order_payment)
+            vals = {
+                'smart_pos_session_id': self.id,
+                'smart_pos_payment_method_id': pos_order_payment[0],
+                'amount_total': pos_order_payment[1]   
+            }
+            smart_pos_session_payment_id = self.env['smart.pos.session.payment'].create(vals)
 
     
     name = fields.Char('Name', size=100)
