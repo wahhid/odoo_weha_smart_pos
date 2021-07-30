@@ -11,6 +11,7 @@ AVAILABLE_STATES = [
 class SmartPosOrder(models.Model):
     _name = 'smart.pos.order'
 
+    
     def create_stock_picking(self):
         picking_type_id = self.smart_pos_session_id.smart_pos_config_id.stock_picking_type_id
         vals = {
@@ -25,6 +26,9 @@ class SmartPosOrder(models.Model):
         if not stock_picking_id:
             raise Warning("Error picking process")
         self.stock_picking_id = stock_picking_id
+
+    def create_stock_move(self):
+        
 
     name = fields.Char('Name', size=255)
     date_order = fields.Datetime('Order Date')

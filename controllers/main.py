@@ -121,6 +121,7 @@ class WehaSmartPosController(http.Controller):
         #         }
         #     ]
         # }
+        # Create Pos Order
         vals = {
             "name": data['name'],
             "date_order": datetime.strptime(data['date_order'],'%Y-%m-%d %H:%M:%S').astimezone(pytz.utc).strftime('%Y-%m-%d %H:%M:%S'),
@@ -130,6 +131,7 @@ class WehaSmartPosController(http.Controller):
             "amount_paid": data['amount_paid'],
             "state": "paid"
         }
+        #Create Pos Order Line
         order_line_ids = []
         for smart_pos_order_line_id in data['smart_pos_order_line_ids']:
             line_vals = (0,0,
@@ -147,6 +149,7 @@ class WehaSmartPosController(http.Controller):
             order_line_ids.append(line_vals)
         vals.update({"smart_pos_order_line_ids": order_line_ids})
 
+        #Create Pos Order Payment
         payment_line_ids = []
         for smart_pos_order_payment_id in data['smart_pos_order_payment_ids']:
             line_vals = (0,0, 
@@ -190,7 +193,6 @@ class WehaSmartPosController(http.Controller):
         pos_config_ds = http.request.env['product.product'].sudo().search([('is_avaiable_on_pos','=',True)])
         return  json.dumps(product_product_ids.read(['name','barcode','default_code','lst_price','standard_price']))
     
-
     @validate_token
     @http.route("/api/smartpos/v1.0/sync_pos_product_category", type="json", auth="none", methods=["POST"], csrf=False)
     def pos_sync_smart_pos_product_category(self, **post):
