@@ -27,7 +27,7 @@ class SmartPosOrder(models.Model):
             raise Warning("Error picking process")
         self.stock_picking_id = stock_picking_id
 
-    def create_stock_move(self):
+    #def create_stock_move(self):
         
 
     name = fields.Char('Name', size=255)
