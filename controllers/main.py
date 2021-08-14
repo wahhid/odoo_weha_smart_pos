@@ -78,7 +78,7 @@ class WehaSmartPosController(http.Controller):
                 "amount_discount": 0,
                 "amount_total": 12000
             }) 
-            smart_pos_order_line_ids.append(pos_order)
+            smart_pos_order_line_ids.append(pos_order_line)
         pos_order_id.write({'smart_pos_order_line_ids': smart_pos_order_line_ids})
 
         smart_pos_order_payment_ids = []
