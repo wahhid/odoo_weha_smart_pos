@@ -57,10 +57,11 @@ class WehaSmartPosController(http.Controller):
         data = json.loads(request.httprequest.data)
         _logger.info(data)  
         pos_order = {
-            "user_id": 1,
-            "smart_pos_session_id": 1,
-            "amount_total": 12000,
-            "amount_paid": 12000,
+            "user_id": data['user_id'],
+            "date_order": data['date_order'],
+            "smart_pos_session_id": data['smart_pos_session_id'],
+            "amount_total": data['amount_total'],
+            "amount_paid": data['amount_paid'],
         }
         smart_pos_order_line_ids = []
         for smart_pos_order_line_id in data['smart_pos_order_line_ids']:
