@@ -63,6 +63,7 @@ class WehaSmartPosController(http.Controller):
             "smart_pos_session_id": data['smart_pos_session_id'],
             "amount_total": data['amount_total'],
             "amount_paid": data['amount_paid'],
+            "state": data['state'],
         }
         pos_order_id = http.request.env['smart.pos.order'].create(pos_order)
 
