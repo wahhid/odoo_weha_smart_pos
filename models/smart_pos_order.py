@@ -33,6 +33,7 @@ class SmartPosOrder(models.Model):
         for smart_pos_order_line_id in self.smart_pos_order_line_ids:
             move = self.env['stock.move'].create({
                 #'name': 'Use on MyLocation',
+                'picking_id': self.stock_picking_id.id,
                 'location_id': self.stock_picking_id.location_id.id,
                 'location_dest_id': self.stock_picking_id.location_dest_id.id,
                 'product_id': smart_pos_order_line_id.product_id.id,
