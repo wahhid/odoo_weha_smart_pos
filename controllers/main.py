@@ -56,7 +56,7 @@ class WehaSmartPosController(http.Controller):
     def pos_upload_transaction(self, **post):
         data = json.loads(request.httprequest.data)
         _logger.info(data)  
-        pos_order_id = http.request.env['pos.order'].create(data)
+        pos_order_id = http.request.env['smart.pos.order'].create(data)
         data =  {
             "err": False,
             "message": "Missing fields",
