@@ -76,6 +76,7 @@ class WehaSmartPosController(http.Controller):
                 "amount_discount": 0,
                 "amount_total": 12000
             }) 
+            smart_pos_order_line_ids.append(pos_order)
         pos_order.update({'smart_pos_order_line_ids': smart_pos_order_line_ids})
         smart_pos_order_payment_ids = []
         for smart_pos_order_payment_id in data['smart_pos_order_payment_ids']:
@@ -85,6 +86,7 @@ class WehaSmartPosController(http.Controller):
                 "amount_discount": 0.0,
                 "amount_total": 12000
             })
+            smart_pos_order_payment_ids.append(pos_order_payment)
         pos_order.update({'smart_pos_order_payment_ids': smart_pos_order_payment_ids})
         pos_order_id = http.request.env['smart.pos.order'].create(pos_order)
         data =  {
