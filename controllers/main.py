@@ -64,6 +64,8 @@ class WehaSmartPosController(http.Controller):
             "amount_total": data['amount_total'],
             "amount_paid": data['amount_paid'],
         }
+        pos_order_id = http.request.env['smart.pos.order'].create(pos_order)
+
         smart_pos_order_line_ids = []
         for smart_pos_order_line_id in data['smart_pos_order_line_ids']:
             pos_order_line = (0,0, {
@@ -77,7 +79,8 @@ class WehaSmartPosController(http.Controller):
                 "amount_total": 12000
             }) 
             smart_pos_order_line_ids.append(pos_order)
-        pos_order.update({'smart_pos_order_line_ids': smart_pos_order_line_ids})
+        pos_order_id.write({'smart_pos_order_line_ids': smart_pos_order_line_ids})
+
         smart_pos_order_payment_ids = []
         for smart_pos_order_payment_id in data['smart_pos_order_payment_ids']:
             pos_order_payment = (0,0, {
@@ -87,11 +90,10 @@ class WehaSmartPosController(http.Controller):
                 "amount_total": 12000
             })
             smart_pos_order_payment_ids.append(pos_order_payment)
-        pos_order.update({'smart_pos_order_payment_ids': smart_pos_order_payment_ids})
-        pos_order_id = http.request.env['smart.pos.order'].create(pos_order)
+        pos_order_id.write({'smart_pos_order_payment_ids': smart_pos_order_payment_ids})
         data =  {
             "err": False,
-            "message": "Missing fields",
+            "message": "Success",
             "data": [{
                 "pos_order_id": pos_order_id.id
             }]
