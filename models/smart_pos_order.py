@@ -26,9 +26,25 @@ class SmartPosOrder(models.Model):
         if not stock_picking_id:
             raise Warning("Error picking process")
         self.stock_picking_id = stock_picking_id
+        self.create_stock_move()
 
-    #def create_stock_move(self):
-        
+
+    def create_stock_move(self):
+        for smart_pos_order_line_id in self.smart_pos_order_line_ids:
+            move = self.env['stock.move'].create({
+                #'name': 'Use on MyLocation',
+                'location_id': self.stock_picking_id.location_id.id,
+                'location_dest_id': self.stock_picking_id.location_dest_id.id,
+                'product_id': smart_pos_order_line_id.product_id.id,
+                'product_uom': smart_pos_order_line_id.product_id.uom_id.id,
+                'product_uom_qty': smart_pos_order_line_id.qty,
+            })
+            move._action_confirm()
+            move._action_assign()
+            # This creates a stock.move.line record.
+            # You could also do it manually using self.env['stock.move.line'].create({...})
+            move.move_line_ids.write({'qty_done': smart_pos_order_line_id.qty}) 
+            move._action_done()
 
     name = fields.Char('Name', size=255)
     date_order = fields.Datetime('Order Date')
