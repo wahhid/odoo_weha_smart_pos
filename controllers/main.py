@@ -56,7 +56,35 @@ class WehaSmartPosController(http.Controller):
     def pos_upload_transaction(self, **post):
         data = json.loads(request.httprequest.data)
         _logger.info(data)  
-        pos_order_id = http.request.env['smart.pos.order'].create(data)
+        pos_order = {
+            "user_id": 1,
+            "smart_pos_session_id": 1,
+            "amount_total": 12000,
+            "amount_paid": 12000,
+        }
+        smart_pos_order_line_ids = []
+        for smart_pos_order_line_id in data['smart_pos_order_line_ids']:
+            pos_order_line = (0,0, {
+                "description": "Fanta",
+                "product_id": 1,
+                "qty": 1,
+                "price_unit": 12000,
+                "tax_id": False,
+                "amount_tax": 0,
+                "amount_discount": 0,
+                "amount_total": 12000
+            }) 
+        pos_order.update({'smart_pos_order_line_ids': smart_pos_order_line_ids})
+        smart_pos_order_payment_ids = []
+        for smart_pos_order_payment_id in data['smart_pos_order_payment_ids']:
+            pos_order_payment = (0,0, {
+                "smart_pos_payment_method_id": 1,
+                "discount_in_percentage": 0.0,
+                "amount_discount": 0.0,
+                "amount_total": 12000
+            })
+        pos_order.update({'smart_pos_order_payment_ids': smart_pos_order_payment_ids})
+        pos_order_id = http.request.env['smart.pos.order'].create(pos_order)
         data =  {
             "err": False,
             "message": "Missing fields",
