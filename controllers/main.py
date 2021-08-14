@@ -55,8 +55,16 @@ class WehaSmartPosController(http.Controller):
     @http.route("/api/smartpos/v1.0/uploadtransaction", type="json", auth="none", methods=["POST"], csrf=False)
     def pos_upload_transaction(self, **post):
         data = json.loads(request.httprequest.data)
-        _logger.info(data)
-        return 'Success'
+        _logger.info(data)  
+        pos_order_id = self.env['pos.order'].create(data)
+        data =  {
+            "err": False,
+            "message": "Missing fields",
+            "data": [{
+                "pos_order_id": pos_order_id.id
+            }]
+        }
+        return valid_response(data)
 
     @validate_token
     @http.route("/api/smartpos/v1.0/createpossession", type="http", auth="none", methods=["POST"], csrf=False)
