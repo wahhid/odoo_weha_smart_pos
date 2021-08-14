@@ -13,20 +13,21 @@ class SmartPosOrder(models.Model):
 
     
     def create_stock_picking(self):
-        picking_type_id = self.smart_pos_session_id.smart_pos_config_id.stock_picking_type_id
-        vals = {
-            'partner_id': self.partner_id.id if self.partner_id else False,
-            'user_id': False,
-            'picking_type_id': picking_type_id.id,
-            'location_id': picking_type_id.default_location_src_id.id,
-            'location_dest_id': picking_type_id.default_location_dest_id.id
-        }
+        for row in self:
+            picking_type_id = row.smart_pos_session_id.smart_pos_config_id.stock_picking_type_id
+            vals = {
+                'partner_id': row.partner_id.id if row.partner_id else False,
+                'user_id': False,
+                'picking_type_id': picking_type_id.id,
+                'location_id': picking_type_id.default_location_src_id.id,
+                'location_dest_id': picking_type_id.default_location_dest_id.id
+            }
 
-        stock_picking_id = self.env['stock.picking'].create(vals)
-        if not stock_picking_id:
-            raise Warning("Error picking process")
-        self.stock_picking_id = stock_picking_id
-        self.create_stock_move()
+            stock_picking_id = self.env['stock.picking'].create(vals)
+            if not stock_picking_id:
+                raise Warning("Error picking process")
+            row.stock_picking_id = stock_picking_id
+            row.create_stock_move()
 
 
             # 'name': first_line.name,
