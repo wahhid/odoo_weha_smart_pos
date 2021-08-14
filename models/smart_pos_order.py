@@ -26,7 +26,7 @@ class SmartPosOrder(models.Model):
             stock_picking_id = self.env['stock.picking'].create(vals)
             if not stock_picking_id:
                 raise Warning("Error picking process")
-            row.stock_picking_id = stock_picking_id
+            row.stock_picking_id = stock_picking_id.id
             row.create_stock_move()
 
 
