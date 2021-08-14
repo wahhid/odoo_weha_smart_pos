@@ -57,6 +57,7 @@ class WehaSmartPosController(http.Controller):
         data = json.loads(request.httprequest.data)
         _logger.info(data)  
         pos_order = {
+            "name": data['name'],
             "user_id": data['user_id'],
             "date_order": data['date_order'],
             "smart_pos_session_id": data['smart_pos_session_id'],
