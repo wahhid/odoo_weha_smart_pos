@@ -78,7 +78,7 @@ class WehaSmartPosController(http.Controller):
             #Create POS Session
             pos_session = {
                 "name":  data['smart_pos_session_id']['name'],
-                "config_id": pos_config_id.id,
+                "smart_pos_config_id": pos_config_id.id,
                 "user_id": data['user_id'],
                 "session_date":  data['smart_pos_session_id']['session_date'],
                 "date_open":  data['smart_pos_session_id']['date_open'],
