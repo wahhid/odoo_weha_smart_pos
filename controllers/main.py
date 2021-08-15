@@ -107,14 +107,14 @@ class WehaSmartPosController(http.Controller):
         smart_pos_order_line_ids = []
         for smart_pos_order_line_id in data['smart_pos_order_line_ids']:
             pos_order_line = (0,0, {
-                "description": "Fanta",
-                "product_id": 1,
-                "qty": 1,
-                "price_unit": 12000,
+                "description": smart_pos_order_line_id["description"],
+                "product_id": smart_pos_order_line_id["product_id"],
+                "qty": smart_pos_order_line_id["qty"],
+                "price_unit": smart_pos_order_line_id["price_unit"],
                 "tax_id": False,
                 "amount_tax": 0,
                 "amount_discount": 0,
-                "amount_total": 12000
+                "amount_total": smart_pos_order_line_id["amount_total"]
             }) 
             smart_pos_order_line_ids.append(pos_order_line)
         pos_order_id.write({'smart_pos_order_line_ids': smart_pos_order_line_ids})
