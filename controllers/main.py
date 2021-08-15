@@ -74,7 +74,7 @@ class WehaSmartPosController(http.Controller):
                         "message": "POS Config not found",
                         "data": []
                     }
-                    return valid_response(data)
+                    data
                             
                 #Create POS Session
                 pos_session = {
@@ -91,7 +91,7 @@ class WehaSmartPosController(http.Controller):
                         "message": "Error Create POS Session",
                         "data": []
                     }
-                    return valid_response(data)
+                    return data
 
             pos_order = {
                 "name": data['name'],
@@ -145,7 +145,7 @@ class WehaSmartPosController(http.Controller):
                 "message": e,
                 "data": []
             }
-            return valid_response(data)
+            return data
 
     @validate_token
     @http.route("/api/smartpos/v1.0/createpossession", type="http", auth="none", methods=["POST"], csrf=False)
