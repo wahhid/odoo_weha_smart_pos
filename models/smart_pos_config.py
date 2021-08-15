@@ -6,6 +6,7 @@ class SmartPosConfig(models.Model):
 
     name = fields.Char('Name', size=255, required=True)
     code = fields.Char('Code', size=5, required=True)
+    is_restaurant = fields.Boolean('Is Restaurant', default=False)
     currency_id = fields.Integer('Currency')
     pricelist_id = fields.Integer('Pricelist')
     company_id = fields.Many2one('res.company', 'Company', required=True)
