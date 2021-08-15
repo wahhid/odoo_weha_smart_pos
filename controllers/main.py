@@ -54,89 +54,97 @@ class WehaSmartPosController(http.Controller):
     @validate_token
     @http.route("/api/smartpos/v1.0/uploadtransaction", type="json", auth="none", methods=["POST"], csrf=False)
     def pos_upload_transaction(self, **post):
-        data = json.loads(request.httprequest.data)
-        _logger.info(data)  
-        #Check POS Session
-        domain = [
-            ('name','=', data['smart_pos_session_id']['name'])
-        ]
-        pos_session_id = http.request.env['smart.pos.session'].search(domain, limit=1)
-        if not pos_session_id:
-            #Find POS Config
+        try:
+            data = json.loads(request.httprequest.data)
+            _logger.info(data)  
+            #Check POS Session
             domain = [
-                ('code','=', data['smart_pos_session_id']['config_id']['code'])
+                ('name','=', data['smart_pos_session_id']['name'])
             ]
-            pos_config_id = http.request.env['smart.pos.config'].search(domain, limit=1)
-            if not pos_config_id:
-                data =  {
-                    "err": True,
-                    "message": "POS Config not found",
-                    "data": []
-                }
-                return valid_response(data)
-                        
-            #Create POS Session
-            pos_session = {
-                "name":  data['smart_pos_session_id']['name'],
-                "smart_pos_config_id": pos_config_id.id,
-                "cashier_id": data['user_id'],
-                "session_date":  data['smart_pos_session_id']['session_date'],
-                "date_open":  data['smart_pos_session_id']['date_open'],
-            }
-            pos_session_id = http.request.env['smart.pos.session'].create(pos_session)
+            pos_session_id = http.request.env['smart.pos.session'].search(domain, limit=1)
             if not pos_session_id:
-                data =  {
-                    "err": True,
-                    "message": "Error Create POS Session",
-                    "data": []
+                #Find POS Config
+                domain = [
+                    ('code','=', data['smart_pos_session_id']['config_id']['code'])
+                ]
+                pos_config_id = http.request.env['smart.pos.config'].search(domain, limit=1)
+                if not pos_config_id:
+                    data =  {
+                        "err": True,
+                        "message": "POS Config not found",
+                        "data": []
+                    }
+                    return valid_response(data)
+                            
+                #Create POS Session
+                pos_session = {
+                    "name":  data['smart_pos_session_id']['name'],
+                    "smart_pos_config_id": pos_config_id.id,
+                    "cashier_id": data['user_id'],
+                    "session_date":  data['smart_pos_session_id']['session_date'],
+                    "date_open":  data['smart_pos_session_id']['date_open'],
                 }
-                return valid_response(data)
+                pos_session_id = http.request.env['smart.pos.session'].create(pos_session)
+                if not pos_session_id:
+                    data =  {
+                        "err": True,
+                        "message": "Error Create POS Session",
+                        "data": []
+                    }
+                    return valid_response(data)
 
-        pos_order = {
-            "name": data['name'],
-            "user_id": data['user_id'],
-            "date_order": data['date_order'],
-            "smart_pos_session_id": pos_session_id.id,
-            "amount_total": data['amount_total'],
-            "amount_paid": data['amount_paid'],
-            "state": data['state'],
-        }
+            pos_order = {
+                "name": data['name'],
+                "user_id": data['user_id'],
+                "date_order": data['date_order'],
+                "smart_pos_session_id": pos_session_id.id,
+                "amount_total": data['amount_total'],
+                "amount_paid": data['amount_paid'],
+                "state": data['state'],
+            }
 
-        pos_order_id = http.request.env['smart.pos.order'].create(pos_order)
+            pos_order_id = http.request.env['smart.pos.order'].create(pos_order)
 
-        smart_pos_order_line_ids = []
-        for smart_pos_order_line_id in data['smart_pos_order_line_ids']:
-            pos_order_line = (0,0, {
-                "description": smart_pos_order_line_id["description"],
-                "product_id": smart_pos_order_line_id["product_id"],
-                "qty": smart_pos_order_line_id["qty"],
-                "price_unit": smart_pos_order_line_id["price_unit"],
-                "tax_id": False,
-                "amount_tax": 0,
-                "amount_discount": 0,
-                "amount_total": smart_pos_order_line_id["amount_total"]
-            }) 
-            smart_pos_order_line_ids.append(pos_order_line)
-        pos_order_id.write({'smart_pos_order_line_ids': smart_pos_order_line_ids})
+            smart_pos_order_line_ids = []
+            for smart_pos_order_line_id in data['smart_pos_order_line_ids']:
+                pos_order_line = (0,0, {
+                    "description": smart_pos_order_line_id["description"],
+                    "product_id": smart_pos_order_line_id["product_id"],
+                    "qty": smart_pos_order_line_id["qty"],
+                    "price_unit": smart_pos_order_line_id["price_unit"],
+                    "tax_id": False,
+                    "amount_tax": 0,
+                    "amount_discount": 0,
+                    "amount_total": smart_pos_order_line_id["amount_total"]
+                }) 
+                smart_pos_order_line_ids.append(pos_order_line)
+            pos_order_id.write({'smart_pos_order_line_ids': smart_pos_order_line_ids})
 
-        smart_pos_order_payment_ids = []
-        for smart_pos_order_payment_id in data['smart_pos_order_payment_ids']:
-            pos_order_payment = (0,0, {
-                "smart_pos_payment_method_id": 1,
-                "discount_in_percentage": 0.0,
-                "amount_discount": 0.0,
-                "amount_total": 12000
-            })
-            smart_pos_order_payment_ids.append(pos_order_payment)
-        pos_order_id.write({'smart_pos_order_payment_ids': smart_pos_order_payment_ids})
-        data =  {
-            "err": False,
-            "message": "Success",
-            "data": [{
-                "pos_order_id": pos_order_id.id
-            }]
-        }
-        return valid_response(data)
+            smart_pos_order_payment_ids = []
+            for smart_pos_order_payment_id in data['smart_pos_order_payment_ids']:
+                pos_order_payment = (0,0, {
+                    "smart_pos_payment_method_id": 1,
+                    "discount_in_percentage": 0.0,
+                    "amount_discount": 0.0,
+                    "amount_total": 12000
+                })
+                smart_pos_order_payment_ids.append(pos_order_payment)
+            pos_order_id.write({'smart_pos_order_payment_ids': smart_pos_order_payment_ids})
+            data =  {
+                "err": False,
+                "message": "Success",
+                "data": [{
+                    "pos_order_id": pos_order_id.id
+                }]
+            }
+            return valid_response(data)
+        except Exception as e:
+            data =  {
+                "err": True,
+                "message": e,
+                "data": []
+            }
+            return valid_response(data)
 
     @validate_token
     @http.route("/api/smartpos/v1.0/createpossession", type="http", auth="none", methods=["POST"], csrf=False)
