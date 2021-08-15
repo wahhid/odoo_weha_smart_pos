@@ -79,7 +79,7 @@ class WehaSmartPosController(http.Controller):
             pos_session = {
                 "name":  data['smart_pos_session_id']['name'],
                 "smart_pos_config_id": pos_config_id.id,
-                "user_id": data['user_id'],
+                "cashier_id": data['user_id'],
                 "session_date":  data['smart_pos_session_id']['session_date'],
                 "date_open":  data['smart_pos_session_id']['date_open'],
             }
