@@ -64,7 +64,7 @@ class WehaSmartPosController(http.Controller):
         if not pos_session_id:
             #Find POS Config
             domain = [
-                ('code','=', data['config_id']['code'])
+                ('code','=', data['smart_pos_session_id']['config_id']['code'])
             ]
             pos_config_id = http.request.env['smart.pos.config'].search(domain, limit=1)
             if not pos_config_id:
