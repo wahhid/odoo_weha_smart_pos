@@ -138,7 +138,7 @@ class WehaSmartPosController(http.Controller):
                 }]
             }
             #return valid_response(data)
-            return json.dumps(data)
+            return data
         except Exception as e:
             data =  {
                 "err": True,
