@@ -52,7 +52,7 @@ class WehaSmartPosController(http.Controller):
         return http.request.render('weha_smart_pos.pos_screen',{})
 
     @validate_token
-    @http.route("/api/smartpos/v1.0/uploadtransaction", type="json", auth="none", methods=["POST"], csrf=False)
+    @http.route("/api/smartpos/v1.0/uploadtransaction", type="http", auth="none", methods=["POST"], csrf=False)
     def pos_upload_transaction(self, **post):
         try:
             data = json.loads(request.httprequest.data)
