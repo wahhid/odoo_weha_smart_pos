@@ -137,7 +137,8 @@ class WehaSmartPosController(http.Controller):
                     "pos_order_id": pos_order_id.id
                 }]
             }
-            return valid_response(data)
+            #return valid_response(data)
+            return json.dumps(data)
         except Exception as e:
             data =  {
                 "err": True,
@@ -175,7 +176,7 @@ class WehaSmartPosController(http.Controller):
         _logger.info(domain)
         vals = []
         output = []
-        return json.dumps({"err": False, "message": "Success", data:[]})
+        return json.dumps({"err": False, "message": "Success", "data":[]})
 
     @validate_token
     @http.route("/api/smartpos/v1.0/createposorder", type="json", auth="none", methods=["POST"], csrf=False)
