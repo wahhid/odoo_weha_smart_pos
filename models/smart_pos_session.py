@@ -49,6 +49,9 @@ class SmartPosSession(models.Model):
     smart_pos_session_payment_ids = fields.One2many('smart.pos.session.payment', 'smart_pos_session_id', 'Pos Order Payments')
     state = fields.Selection(AVAILABLE_STATES, 'Status', default='open')
     
+    _sql_constraints = [
+        ('name_uniq', 'UNIQUE (name)',  'You can not have two session with the same name !')
+    ]
 
 class SmartPosSessionPayment(models.Model):
     _name = 'smart.pos.session.payment'

@@ -56,15 +56,52 @@ class WehaSmartPosController(http.Controller):
     def pos_upload_transaction(self, **post):
         data = json.loads(request.httprequest.data)
         _logger.info(data)  
+        #Check POS Session
+        domain = [
+            ('name','=', data['smart_pos_session_id']['name'])
+        ]
+        pos_session_id = http.request.env['smart.pos.session'].search(domain, limit=1)
+        if not pos_session_id:
+            #Find POS Config
+            domain = [
+                ('code','=', data['config_id']['code'])
+            ]
+            pos_config_id = http.request.env['smart.pos.config'].search(domain, limit=1)
+            if not pos_config_id:
+                data =  {
+                    "err": True,
+                    "message": "POS Config not found",
+                    "data": []
+                }
+                return valid_response(data)
+                        
+            #Create POS Session
+            pos_session = {
+                "name":  data['smart_pos_session_id']['name'],
+                "config_id": pos_config_id.id,
+                "user_id": data['user_id'],
+                "session_date":  data['smart_pos_session_id']['session_date'],
+                "date_open":  data['smart_pos_session_id']['date_open'],
+            }
+            pos_session_id = http.request.env['smart.pos.session'].create(pos_session)
+            if not pos_session_id:
+                data =  {
+                    "err": True,
+                    "message": "Error Create POS Session",
+                    "data": []
+                }
+                return valid_response(data)
+
         pos_order = {
             "name": data['name'],
             "user_id": data['user_id'],
             "date_order": data['date_order'],
-            "smart_pos_session_id": data['smart_pos_session_id'],
+            "smart_pos_session_id": pos_session_id.id,
             "amount_total": data['amount_total'],
             "amount_paid": data['amount_paid'],
             "state": data['state'],
         }
+
         pos_order_id = http.request.env['smart.pos.order'].create(pos_order)
 
         smart_pos_order_line_ids = []
